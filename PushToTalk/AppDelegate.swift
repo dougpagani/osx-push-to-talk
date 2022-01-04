@@ -50,7 +50,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         statusItem.menu = statusMenu
         self.microphone.statusUpdated = { (status) in
             self.menuItemToggle.title = status.title()
-            self.statusItem.button?.image = status.image()
+            self.statusItem.button?.title = "LIVE"
+            // BROKEN: it gets swalled by next item
+            /* self.statusItem.button?.cell.wraps = true */
+            // https://stackoverflow.com/questions/7514157/nsbutton-setalignment-does-not-work
+            // https://stackoverflow.com/questions/671136/wrap-nsbutton-title
         }
         self.microphone.status = .Muted
         self.refreshDevices(nil);
